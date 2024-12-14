@@ -13,11 +13,6 @@ data "aws_availability_zones" "available" {
   state = "available"
 }
 
-# Local values
-locals {
-  azs=slice(data.aws_availability_zones.available.names,0,3)
-}
-
 # Public Subnets
 resource "aws_subnet" "public" {
   count             = 3
@@ -47,3 +42,4 @@ resource "aws_subnet" "private" {
     AZ   = local.azs[count.index]
   }
 }
+
