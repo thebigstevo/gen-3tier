@@ -8,12 +8,12 @@ resource "aws_vpc" "gen-3tier" {
   }
 }
 
+#Fetch available AZs
 data "aws_availability_zones" "available" {
   state = "available"
 }
 
 # Local values
-
 locals {
   azs=slice(data.aws_availability_zones.available.names,0,3)
 }
