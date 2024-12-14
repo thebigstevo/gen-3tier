@@ -15,7 +15,7 @@ data "aws_availability_zones" "available" {
 
 # Public Subnets
 resource "aws_subnet" "public" {
-  count             = 2
+  count             = 1
   vpc_id            = aws_vpc.gen-3tier.id
   cidr_block        = var.public_subnet_cidrs[count.index]
   availability_zone = local.azs[count.index]
@@ -31,7 +31,7 @@ resource "aws_subnet" "public" {
 
 # Private Subnets
 resource "aws_subnet" "private" {
-  count             = 2
+  count             = 1
   vpc_id            = aws_vpc.gen-3tier.id
   cidr_block        = var.private_subnet_cidrs[count.index]
   availability_zone = local.azs[count.index]
