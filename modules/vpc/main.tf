@@ -1,3 +1,4 @@
+# Purpose: Create a VPC with 3 public and 3 private subnets
 resource "aws_vpc" "gen-3tier" {
   cidr_block = var.cidr_block
   enable_dns_hostnames = true
@@ -11,10 +12,7 @@ data "aws_availability_zones" "available" {
   state = "available"
 }
 
-
-locals {
-  azs = length(var.availability_zone) > 0 ? var.availability_zone : slice(data.aws_availability_zones.available.names, 0, 3)
-}
+# Local values
 
 locals {
   azs=slice(data.aws_availability_zones.available.names,0,3)
